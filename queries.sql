@@ -45,7 +45,7 @@ WHERE year > 2000;
 -- 6. Select all books with a rating of 9.0 or higher.
 SELECT *
 FROM books
-WHERE rating => 9.0;
+WHERE rating >= 9.0;
 
 -- 7. Select all books that are currently available.
 SELECT *
@@ -55,7 +55,7 @@ WHERE available = 't';
 -- 8. Select all books that are currently unavailable.
 SELECT *
 FROM books
-WHERE unavailable = 'f';
+WHERE available = FALSE;
 
 -- 9. Select all books published before 1970.
 SELECT *
@@ -72,7 +72,7 @@ AND rating > 9.4;
 -- 11. Select all books in the 'fantasy' or 'mystery' genre.
 SELECT *
 FROM books
-WHERE genre = 'fantacy' OR genre = 'mystery';
+WHERE genre = 'fantasy' OR genre = 'mystery';
 
 -- ============================================================
 -- Part 3: ORDER BY & LIMIT — Sorting and Slicing
@@ -86,7 +86,7 @@ ORDER BY rating DESC;
 -- 13. Select all books, ordered by year from oldest to newest.
 SELECT *
 FROM books 
-ORDER BY year DESC;
+ORDER BY year ASC;
 
 -- 14. Select the 5 highest-rated books.
 SELECT *
@@ -113,7 +113,8 @@ ORDER BY year ASC;
 --     ordered by rating from highest to lowest.
 SELECT *
 FROM books
-WHERE rating >= 9.0
+WHERE available = TRUE
+AND rating >= 9.0
 ORDER BY rating DESC;
 
 -- 18. Select the title and genre of the 3 oldest books.
@@ -144,8 +145,8 @@ FROM books;
 -- 21. Mark the book you inserted in #19 as unavailable.
 --     Use its book_id to target it specifically.
 UPDATE books
-SET  available = 'f'
-WHERE book_id = 19;
+SET  available = FALSE
+WHERE book_id = 13;
 
 -- 22. Update the rating of 'Project Hail Mary' to 9.7.
 UPDATE books
